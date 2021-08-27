@@ -29,7 +29,6 @@ public class CourseService implements BaseService<Course>{
     }
 
     @Override
-    public int deleteById(int id) {
-        return 0;
+    public void deleteById(int id) {
     }
 }

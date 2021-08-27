@@ -13,13 +13,11 @@ public class StudentController {
 
     StudentService studentService;
 
-    //Service kısmında annotion koyarak hata halledildi
-    @Autowired //yeni versiyonlarda tek param varken gerek yok
+    @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    //endpoint yaratıldı
     @GetMapping("/students")
     public ResponseEntity findAll() {
         return new ResponseEntity(studentService.findAll(), HttpStatus.OK);
@@ -41,8 +39,8 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public int deleteStudentById(@PathVariable int id) {
-        return studentService.deleteById(id);
+    public void deleteStudentById(@PathVariable int id) {
+        studentService.deleteById(id);
     }
 
 }

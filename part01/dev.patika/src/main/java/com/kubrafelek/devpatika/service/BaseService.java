@@ -12,6 +12,6 @@ public interface BaseService<T> {
 
     T update(T object);
 
-    int deleteById(int id);
+    void deleteById(int id);
 
 }

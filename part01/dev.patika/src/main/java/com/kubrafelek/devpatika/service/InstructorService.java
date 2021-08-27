@@ -28,7 +28,6 @@ public class InstructorService implements BaseService<Instructor> {
     }
 
     @Override
-    public int deleteById(int id) {
-        return 0;
+    public void deleteById(int id) {
     }
 }

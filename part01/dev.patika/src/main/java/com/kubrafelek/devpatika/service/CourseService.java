@@ -50,4 +50,15 @@ public class CourseService implements BaseService<Course> {
     public void deleteById(int id) {
         courseRepository.deleteById(id);
     }
+
+
+    @Transactional
+    public void deleteByName(String name) {
+        courseRepository.deleteByName(name);
+    }
+
+    @Transactional
+    public void findByName(String name) {
+        courseRepository.findByName(name);
+    }
 }

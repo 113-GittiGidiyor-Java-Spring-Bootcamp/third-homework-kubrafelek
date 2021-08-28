@@ -44,4 +44,16 @@ public class InstructorController {
     public void deleteInstructorById(@PathVariable int id) {
         instructorService.deleteById(id);
     }
+
+    //Can delete student by using student name
+    @DeleteMapping("/deleteByName/{name}")
+    public void deleteByInstructorName(@PathVariable String name) {
+        instructorService.deleteByName(name);
+    }
+
+    //Can find student with a name
+    @GetMapping("/findByName/{name}")
+    public void findByInstructorName(@PathVariable String name) {
+        instructorService.findByName(name);
+    }
 }

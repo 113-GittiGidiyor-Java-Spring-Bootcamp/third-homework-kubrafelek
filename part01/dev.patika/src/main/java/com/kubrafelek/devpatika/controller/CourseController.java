@@ -45,5 +45,15 @@ public class CourseController {
         courseService.deleteById(id);
     }
 
+    //Can delete course by using student name
+    @DeleteMapping("/deleteByName/{name}")
+    public void deleteByCourseName(@PathVariable String name) {
+        courseService.deleteByName(name);
+    }
 
+    //Can find course with a name
+    @GetMapping("/findByName/{name}")
+    public void findByCourseName(@PathVariable String name) {
+        courseService.findByName(name);
+    }
 }

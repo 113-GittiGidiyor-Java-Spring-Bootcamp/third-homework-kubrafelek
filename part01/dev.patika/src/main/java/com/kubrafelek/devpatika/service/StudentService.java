@@ -50,15 +50,18 @@ public class StudentService implements BaseService<Student> {
         studentRepository.deleteById(id);
     }
 
- /*   public int getNumberStudents() {
-        return studentRepository.getNumberOfStudents();
+    @Transactional
+    public void findByName(String name) {
+        studentRepository.findByName(name);
     }
 
-    public List<?> getAgesWithGrouping() {
-        return studentRepository.getAgesWithGrouping();
+    @Transactional
+    public void deleteByName(String name) {
+        studentRepository.deleteByName(name);
     }
 
-    public List<Student> getStudentsWithName(String name) {
-        return studentRepository.findByName(name);
-    }*/
+    public List<?> getGenderWithGrouping() {
+        return studentRepository.getGenderWithGrouping();
+    }
+
 }

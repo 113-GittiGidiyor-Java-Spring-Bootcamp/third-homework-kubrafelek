@@ -2,10 +2,8 @@ package com.kubrafelek.devpatika.service;
 
 import com.kubrafelek.devpatika.entity.Instructor;
 import com.kubrafelek.devpatika.entity.PermanentInstructor;
-import com.kubrafelek.devpatika.entity.Student;
 import com.kubrafelek.devpatika.entity.VisitingResearcher;
 import com.kubrafelek.devpatika.repository.InstructorRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,16 +33,17 @@ public class InstructorService implements BaseService<Instructor> {
     }
 
     @Override
+    @Transactional
     public Instructor save(Instructor instructor) {
         return instructorRepository.save(instructor);
     }
 
     public Instructor savePermanentInstructor(PermanentInstructor permanentInstructor) {
-        return null;
+        return instructorRepository.save(permanentInstructor);
     }
 
     public Instructor saveVisitingResearcher(VisitingResearcher visitingResearcher) {
-        return null;
+        return instructorRepository.save(visitingResearcher);
     }
 
     @Override
@@ -57,5 +56,15 @@ public class InstructorService implements BaseService<Instructor> {
     @Transactional
     public void deleteById(int id) {
         instructorRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteByName(String name) {
+        instructorRepository.deleteByName(name);
+    }
+
+    @Transactional
+    public void findByName(String name) {
+        instructorRepository.findByName(name);
     }
 }

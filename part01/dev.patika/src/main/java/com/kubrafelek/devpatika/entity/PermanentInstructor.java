@@ -2,14 +2,9 @@ package com.kubrafelek.devpatika.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @Data
 @NoArgsConstructor
-@Entity
-public class PermanentInstructor {
+public class PermanentInstructor extends Instructor{
 
-    @Id
     private double fixedSalary;
 }

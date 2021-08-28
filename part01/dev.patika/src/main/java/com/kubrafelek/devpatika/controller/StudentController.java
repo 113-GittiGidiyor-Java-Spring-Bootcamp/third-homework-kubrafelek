@@ -7,20 +7,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class StudentController {
 
     StudentService studentService;
 
-    @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping("/students")
-    public ResponseEntity findAll() {
-        return new ResponseEntity(studentService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Student>> findAll() {
+        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/students/{id}")
@@ -42,5 +43,21 @@ public class StudentController {
     public void deleteStudentById(@PathVariable int id) {
         studentService.deleteById(id);
     }
+
+/*    @GetMapping("/getNumberOfStudents")
+    public String getNumberOfStudents() {
+        int total = studentService.getNumberStudents();
+        return "Total Employee number on database: " + total;
+    }
+
+    @GetMapping("/getAgesWithGrouping")
+    public List<?> getAgesWithGrouping() {
+        return studentService.getAgesWithGrouping();
+    }
+
+    @GetMapping("/findByName/{name}")
+    public List<Student> getStudentsWithName(@PathVariable String name) {
+        return studentService.getStudentsWithName(name);
+    }*/
 
 }

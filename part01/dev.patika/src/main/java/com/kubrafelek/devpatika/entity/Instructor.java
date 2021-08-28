@@ -2,14 +2,14 @@ package com.kubrafelek.devpatika.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Instructor {
 
     @Id
@@ -18,4 +18,8 @@ public class Instructor {
     private String name;
     private String address;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "instructor")
+    private List<Course> courseList = new ArrayList<>();
+
 }

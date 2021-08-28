@@ -49,4 +49,16 @@ public class StudentService implements BaseService<Student> {
     public void deleteById(int id) {
         studentRepository.deleteById(id);
     }
+
+ /*   public int getNumberStudents() {
+        return studentRepository.getNumberOfStudents();
+    }
+
+    public List<?> getAgesWithGrouping() {
+        return studentRepository.getAgesWithGrouping();
+    }
+
+    public List<Student> getStudentsWithName(String name) {
+        return studentRepository.findByName(name);
+    }*/
 }

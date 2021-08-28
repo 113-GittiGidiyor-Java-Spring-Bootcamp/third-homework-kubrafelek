@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class CourseController {
 
-    CourseService courseService;
+    private final CourseService courseService;
 
     @Autowired
     public CourseController(CourseService courseService) {
@@ -19,8 +21,8 @@ public class CourseController {
     }
 
     @GetMapping("/courses")
-    public ResponseEntity findAll() {
-        return new ResponseEntity(courseService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Course>> findAll() {
+        return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/courses/{id}")
@@ -39,8 +41,8 @@ public class CourseController {
     }
 
     @DeleteMapping("/courses/{id}")
-    public int deleteCourseById(@PathVariable int id) {
-        return courseService.deleteById(id);
+    public void deleteCourseById(@PathVariable int id) {
+        courseService.deleteById(id);
     }
 
 

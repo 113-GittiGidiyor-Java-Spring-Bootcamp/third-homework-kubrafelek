@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data //ReqArgsConst. + Getter + Setter + EqualsHash + ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Course {
 

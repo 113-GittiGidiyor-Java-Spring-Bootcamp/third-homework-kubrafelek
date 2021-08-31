@@ -10,8 +10,8 @@ public interface BaseService<T> {
 
     T save(T object);
 
-    T update(T object);
+    T update(T object, int id);
 
-    void deleteById(int id);
+    String deleteById(int id);
 
 }

@@ -10,50 +10,54 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/courses")
 public class CourseController {
 
-    private final CourseService courseService;
+    CourseService courseService;
 
     @Autowired
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
 
-    @GetMapping("/courses")
-    public ResponseEntity<List<Course>> findAll() {
+    //List all courses
+    @GetMapping("/allCourses")
+    public ResponseEntity<List<Course>> findAllCourse() {
         return new ResponseEntity<>(courseService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/courses/{id}")
+    //Get course by course id
+    @GetMapping("/courseId/{id}")
     public ResponseEntity<Course> findCourseById(@PathVariable int id) {
         return new ResponseEntity<>(courseService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/courses")
-    public Course saveCourse(@RequestBody Course course) {
-        return courseService.save(course);
+    //Add new course to course list
+    @PostMapping("/save")
+    public ResponseEntity<Course> saveCourse(@RequestBody Course course) {
+        return new ResponseEntity<>(courseService.save(course), HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/courses")
-    public Course updateCourse(@RequestBody Course course) {
-        return courseService.update(course);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Course> updateCourse(@RequestBody Course course, @PathVariable int id) {
+        return new ResponseEntity<>(courseService.update(course, id), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/courses/{id}")
-    public void deleteCourseById(@PathVariable int id) {
-        courseService.deleteById(id);
-    }
-
-    //Can delete course by using student name
-    @DeleteMapping("/deleteByName/{name}")
-    public void deleteByCourseName(@PathVariable String name) {
-        courseService.deleteByName(name);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Course> deleteCourseById(@PathVariable int id) {
+        return new ResponseEntity(courseService.deleteById(id), HttpStatus.ACCEPTED);
     }
 
     //Can find course with a name
     @GetMapping("/findByName/{name}")
-    public void findByCourseName(@PathVariable String name) {
-        courseService.findByName(name);
+    public ResponseEntity<List<Course>> findByCourseName(@PathVariable String name) {
+        return new ResponseEntity(courseService.findByCourseName(name), HttpStatus.ACCEPTED);
     }
+
+    //Can delete course by using course name
+    @DeleteMapping("/deleteByName/{name}")
+    public void deleteByCourseName(@PathVariable String name) {
+        courseService.deleteByCourseName(name);
+    }
+
 }

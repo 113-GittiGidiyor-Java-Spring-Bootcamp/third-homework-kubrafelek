@@ -6,15 +6,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/convert_money")
 public class Converter {
 
-    private final static double DOLLAR_STATUS = 8.75;
+    @GetMapping("/tlToDollar")
+    public ResponseEntity<String> TlToDollar() {
+        return new ResponseEntity<>("1 TL = 0,1203 Dollar", HttpStatus.OK);
+    }
 
-    RestTemplate restTemplate;
-
-    @GetMapping("/convertMoney/{money}")
-    public Double convertMoneyToDollar(double money) throws RuntimeException {
-        return DOLLAR_STATUS * money;
+    @GetMapping("/dollarToTl")
+    public ResponseEntity<String> dollarToTl() {
+        return new ResponseEntity<>("1 Dollar = 8.31 TL", HttpStatus.OK);
     }
 }

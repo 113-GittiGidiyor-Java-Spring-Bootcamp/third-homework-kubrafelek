@@ -1,10 +1,7 @@
 package com.kubrafelek.devpatika.service;
 
 import com.kubrafelek.devpatika.entity.Course;
-import com.kubrafelek.devpatika.entity.Student;
 import com.kubrafelek.devpatika.repository.CourseRepository;
-import com.kubrafelek.devpatika.repository.InstructorRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,24 +38,30 @@ public class CourseService implements BaseService<Course> {
 
     @Override
     @Transactional
-    public Course update(Course course) {
-        return courseRepository.save(course);
+    public Course update(Course course, int id) {
+        Course findCourse = findById(id);
+        findCourse.setCourseName(course.getCourseName());
+        findCourse.setCourseCode(course.getCourseCode());
+        findCourse.setCreditScore(course.getCreditScore());
+        return courseRepository.save(findCourse);
     }
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public String deleteById(int id) {
         courseRepository.deleteById(id);
-    }
-
-
-    @Transactional
-    public void deleteByName(String name) {
-        courseRepository.deleteByName(name);
+        return "Course id => " + id + " Deleted....";
     }
 
     @Transactional
-    public void findByName(String name) {
-        courseRepository.findByName(name);
+    public List<Course> findByCourseName(String courseName) {
+        return courseRepository.findByCourseName(courseName);
     }
+
+    @Transactional
+    public void deleteByCourseName(String name) {
+        courseRepository.deleteByCourseName(name);
+    }
+
+
 }

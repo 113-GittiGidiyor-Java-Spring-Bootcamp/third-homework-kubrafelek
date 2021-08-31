@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/students")
 public class StudentController {
 
     StudentService studentService;
@@ -20,27 +20,27 @@ public class StudentController {
     }
 
     //Can list all students data
-    @GetMapping("/students")
+    @GetMapping("/allStudents")
     public ResponseEntity<List<Student>> findAll() {
         return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
     }
 
     //Can find student using by id
-    @GetMapping("/students/{id}")
+    @GetMapping("/studentId/{id}")
     public ResponseEntity<Student> findStudentById(@PathVariable int id) {
         return new ResponseEntity<>(studentService.findById(id), HttpStatus.OK);
     }
 
     //Can save student to database
-    @PostMapping("/students")
-    public Student saveStudent(@RequestBody Student student) {
-        return studentService.save(student);
+    @PostMapping("/save")
+    public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
+        return new ResponseEntity<>(studentService.save(student), HttpStatus.OK);
     }
 
     //Can update student data
-    @PutMapping("/students")
-    public Student updateStudent(@RequestBody Student student) {
-        return studentService.update(student);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student, int id) {
+        return new ResponseEntity<>(studentService.update(student, id), HttpStatus.ACCEPTED);
     }
 
     //Can delete student by using id
@@ -49,6 +49,11 @@ public class StudentController {
         studentService.deleteById(id);
     }
 
+    //Can find student with a name
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<List<Student>> findByStudentName(@PathVariable String name) {
+        return new ResponseEntity(studentService.findByName(name), HttpStatus.ACCEPTED);
+    }
 
     //Can delete student by using student name
     @DeleteMapping("/deleteByName/{name}")
@@ -56,16 +61,13 @@ public class StudentController {
         studentService.deleteByName(name);
     }
 
-    //Can find student with a name
-    @GetMapping("/findByName/{name}")
-    public void findByStudentName(@PathVariable String name) {
-        studentService.findByName(name);
-    }
+
+
 
     //Students group with a gender
-    @GetMapping("/getGenderWithGrouping")
+  /*  @GetMapping("/getGenderWithGrouping")
     public List<?> getGenderWithGrouping() {
         return studentService.getGenderWithGrouping();
     }
-
+*/
 }

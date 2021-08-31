@@ -1,8 +1,6 @@
 package com.kubrafelek.devpatika.service;
 
 import com.kubrafelek.devpatika.entity.Instructor;
-import com.kubrafelek.devpatika.entity.PermanentInstructor;
-import com.kubrafelek.devpatika.entity.VisitingResearcher;
 import com.kubrafelek.devpatika.repository.InstructorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,33 +27,34 @@ public class InstructorService implements BaseService<Instructor> {
     @Override
     @Transactional(readOnly = true)
     public Instructor findById(int id) {
-        return instructorRepository.findById(id).get();
+        return (Instructor) instructorRepository.findById(id).get();
     }
 
     @Override
     @Transactional
     public Instructor save(Instructor instructor) {
-        return instructorRepository.save(instructor);
-    }
-
-    public Instructor savePermanentInstructor(PermanentInstructor permanentInstructor) {
-        return instructorRepository.save(permanentInstructor);
-    }
-
-    public Instructor saveVisitingResearcher(VisitingResearcher visitingResearcher) {
-        return instructorRepository.save(visitingResearcher);
+        return (Instructor) instructorRepository.save(instructor);
     }
 
     @Override
     @Transactional
-    public Instructor update(Instructor instructor) {
-        return instructorRepository.save(instructor);
+    public Instructor update(Instructor instructor, int id) {
+        Instructor findInstructor = findById(id);
+        findInstructor.setName(instructor.getName());
+        findInstructor.setAddress(instructor.getAddress());
+        findInstructor.setPhoneNumber(instructor.getPhoneNumber());
+        return instructorRepository.save(findInstructor);
     }
 
     @Override
-    @Transactional
-    public void deleteById(int id) {
+    public String deleteById(int id) {
         instructorRepository.deleteById(id);
+        return "Instructor id => " + id + " Deleted....";
+    }
+
+    @Transactional
+    public List<Instructor> findByName(String courseName) {
+        return instructorRepository.findByName(courseName);
     }
 
     @Transactional
@@ -63,8 +62,4 @@ public class InstructorService implements BaseService<Instructor> {
         instructorRepository.deleteByName(name);
     }
 
-    @Transactional
-    public void findByName(String name) {
-        instructorRepository.findByName(name);
-    }
 }

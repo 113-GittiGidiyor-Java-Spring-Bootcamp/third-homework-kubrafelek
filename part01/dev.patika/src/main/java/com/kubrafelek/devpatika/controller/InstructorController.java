@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/instructors")
 public class InstructorController {
 
     InstructorService instructorService;
@@ -20,24 +20,24 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
-    @GetMapping("/instructors")
+    @GetMapping("/allInstructors")
     public ResponseEntity<List<Instructor>> findAll() {
         return new ResponseEntity<>(instructorService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/instructors/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Instructor> findInstructorById(@PathVariable int id) {
         return new ResponseEntity<>(instructorService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/instructors")
-    public Instructor saveInstructor(@RequestBody Instructor instructor) {
-        return instructorService.save(instructor);
+    @PostMapping("/save")
+    public ResponseEntity<Instructor> saveInstructor(@RequestBody Instructor instructor) {
+        return new ResponseEntity<>(instructorService.save(instructor), HttpStatus.OK);
     }
 
-    @PutMapping("/instructors")
-    public Instructor updateInstructor(@RequestBody Instructor instructor) {
-        return instructorService.update(instructor);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Instructor> updateInstructor(@RequestBody Instructor instructor, int id) {
+        return new ResponseEntity<>(instructorService.update(instructor, id), HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/instructors/{id}")
@@ -45,15 +45,17 @@ public class InstructorController {
         instructorService.deleteById(id);
     }
 
-    //Can delete student by using student name
+    //Can find instructor with a name
+    @GetMapping("/findByName/{name}")
+    public ResponseEntity<List<Instructor>> findByInstructorName(@PathVariable String name) {
+        return new ResponseEntity(instructorService.findByName(name), HttpStatus.ACCEPTED);
+    }
+
+    //Can delete instructor by using instructor name
     @DeleteMapping("/deleteByName/{name}")
     public void deleteByInstructorName(@PathVariable String name) {
         instructorService.deleteByName(name);
     }
 
-    //Can find student with a name
-    @GetMapping("/findByName/{name}")
-    public void findByInstructorName(@PathVariable String name) {
-        instructorService.findByName(name);
-    }
+
 }

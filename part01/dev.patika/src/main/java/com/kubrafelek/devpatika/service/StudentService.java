@@ -1,5 +1,6 @@
 package com.kubrafelek.devpatika.service;
 
+import com.kubrafelek.devpatika.entity.Course;
 import com.kubrafelek.devpatika.entity.Student;
 import com.kubrafelek.devpatika.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class StudentService implements BaseService<Student> {
         return studentList;
     }
 
-    @Override
     //performans acısından yararlı
+    @Override
     @Transactional(readOnly = true)
     public Student findById(int id) {
         return studentRepository.findById(id).get();
@@ -40,19 +41,24 @@ public class StudentService implements BaseService<Student> {
 
     @Override
     @Transactional
-    public Student update(Student student) {
-        return studentRepository.save(student);
+    public Student update(Student student, int id) {
+        Student findStudent = findById(id);
+        findStudent.setName(student.getName());
+        findStudent.setGender(student.getGender());
+        findStudent.setBirthdate(student.getBirthdate());
+        return studentRepository.save(findStudent);
     }
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public String deleteById(int id) {
         studentRepository.deleteById(id);
+        return "Student id => " + id + " Deleted....";
     }
 
     @Transactional
-    public void findByName(String name) {
-        studentRepository.findByName(name);
+    public List<Student> findByName(String courseName) {
+        return studentRepository.findByName(courseName);
     }
 
     @Transactional
@@ -60,8 +66,8 @@ public class StudentService implements BaseService<Student> {
         studentRepository.deleteByName(name);
     }
 
-    public List<?> getGenderWithGrouping() {
+/*    public List<?> getGenderWithGrouping() {
         return studentRepository.getGenderWithGrouping();
-    }
+    }*/
 
 }

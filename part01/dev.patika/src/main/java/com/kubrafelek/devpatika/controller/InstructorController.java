@@ -57,5 +57,29 @@ public class InstructorController {
         instructorService.deleteByName(name);
     }
 
+    //Three PermanentInstructor with a minimum salary
+    @GetMapping("/minfixedsalary")
+    public ResponseEntity<List<Instructor>> firstThreeMinFixedSalary() {
+        return new ResponseEntity<>(instructorService.firstThreeInstructorOfMinFixedSalary(), HttpStatus.OK);
+    }
+
+    //Three PermanentInstructor with a maximum salary
+    @GetMapping("/maxfixedsalary")
+    public ResponseEntity<List<Instructor>> firstThreeMaxFixedSalary() {
+        return new ResponseEntity<>(instructorService.firstThreeInstructorOfMaxFixedSalary(), HttpStatus.OK);
+    }
+
+    //Three VisitingResearcher with a minimum salary
+    @GetMapping("/minhourlysalary")
+    public ResponseEntity<List<Instructor>> firstThreeMinHourlySalary() {
+        return new ResponseEntity<>(instructorService.firstThreeInstructorOfMinHourlySalary(), HttpStatus.OK);
+    }
+
+    //Three VisitingResearcher with a maximum salary
+    @GetMapping("/maxhourlysalary")
+    public ResponseEntity<List<Instructor>> firstThreeMaxHourlySalary() {
+        return new ResponseEntity<>(instructorService.firstThreeInstructorOfMaxHourlySalary(), HttpStatus.OK);
+    }
+
 
 }

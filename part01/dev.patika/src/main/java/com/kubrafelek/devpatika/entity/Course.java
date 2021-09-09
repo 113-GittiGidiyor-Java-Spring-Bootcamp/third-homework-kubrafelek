@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data //ReqArgsConst. + Getter + Setter + EqualsHash + ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Course {
 
@@ -24,4 +23,10 @@ public class Course {
 
     @ManyToMany
     private List<Student> studentList = new ArrayList<>();
+
+    public Course(String courseName, int courseCode, int creditScore) {
+        this.courseName = courseName;
+        this.courseCode = courseCode;
+        this.creditScore = creditScore;
+    }
 }

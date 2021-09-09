@@ -6,12 +6,12 @@ import java.util.List;
 
 @Data
 @RequiredArgsConstructor
-public class VisitingResearcher extends Instructor{
+public class VisitingResearcher extends Instructor {
 
     private double hourlySalary;
 
-    public VisitingResearcher(int id, String name, String address, String phoneNumber, List<Course> courseList, double hourlySalary) {
-        super(id, name, address, phoneNumber, courseList);
+    public VisitingResearcher(String name, String address, String phoneNumber, double hourlySalary) {
+        super(name, address, phoneNumber);
         this.hourlySalary = hourlySalary;
     }
 }

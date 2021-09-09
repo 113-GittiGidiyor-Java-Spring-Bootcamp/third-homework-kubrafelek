@@ -62,4 +62,24 @@ public class InstructorService implements BaseService<Instructor> {
         instructorRepository.deleteByName(name);
     }
 
+    public List<Instructor> firstThreeInstructorOfMinFixedSalary() {
+        return instructorRepository.findFirstThreeMinFixedSalary();
+
+    }
+
+    public List<Instructor> firstThreeInstructorOfMaxFixedSalary() {
+        return instructorRepository.findFirstThreeMaxFixedSalary();
+
+    }
+
+    public List<Instructor> firstThreeInstructorOfMinHourlySalary() {
+        return instructorRepository.findFirstThreeMinHourlySalary();
+
+    }
+
+    public List<Instructor> firstThreeInstructorOfMaxHourlySalary() {
+        return instructorRepository.findFirstThreeMaxHourlySalary();
+
+    }
+
 }

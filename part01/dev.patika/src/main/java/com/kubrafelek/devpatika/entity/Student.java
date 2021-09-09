@@ -9,8 +9,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 public class Student {
 
@@ -25,4 +23,10 @@ public class Student {
     @ManyToMany
     private List<Course> courseList = new ArrayList<>();
 
+    public Student(String name, LocalDate birthdate, String address, String gender) {
+        this.name = name;
+        this.birthdate = birthdate;
+        this.address = address;
+        this.gender = gender;
+    }
 }

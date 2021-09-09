@@ -66,8 +66,8 @@ public class StudentService implements BaseService<Student> {
         studentRepository.deleteByName(name);
     }
 
-/*    public List<?> getGenderWithGrouping() {
+    public List<?> getGenderWithGrouping() {
         return studentRepository.getGenderWithGrouping();
-    }*/
+    }
 
 }

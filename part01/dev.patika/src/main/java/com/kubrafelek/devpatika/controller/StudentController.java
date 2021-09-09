@@ -61,13 +61,10 @@ public class StudentController {
         studentService.deleteByName(name);
     }
 
-
-
-
     //Students group with a gender
-  /*  @GetMapping("/getGenderWithGrouping")
+    @GetMapping("/getGenderWithGrouping")
     public List<?> getGenderWithGrouping() {
         return studentService.getGenderWithGrouping();
     }
-*/
+
 }

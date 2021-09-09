@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/part01/dev.patika/dev.patika.iml" filepath="$PROJECT_DIR$/part01/dev.patika/dev.patika.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/third-homework-kubrafelek.iml" filepath="$PROJECT_DIR$/.idea/third-homework-kubrafelek.iml" />
+    </modules>
+  </component>
+</project>

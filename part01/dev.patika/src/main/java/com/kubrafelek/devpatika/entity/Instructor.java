@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Instructor {
@@ -23,4 +23,9 @@ public class Instructor {
     @OneToMany(mappedBy = "instructor")
     private List<Course> courseList = new ArrayList<>();
 
+    public Instructor(String name, String address, String phoneNumber) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
 }

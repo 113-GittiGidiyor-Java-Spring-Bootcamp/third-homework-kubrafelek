@@ -25,9 +25,9 @@ public class MainRunner implements CommandLineRunner {
         courseRepository.deleteAll();
         studentRepository.deleteAll();
 
-        Student student1 = new Student("Merve Anık", LocalDate.of(1997, Month.JANUARY,15),  "Şile", "Female");
-        Student student2 = new Student("Cem Gürsel", LocalDate.of(1997, Month.FEBRUARY,11), "Şile", "Male");
-        Student student3 = new Student("Anıl Güzel", LocalDate.of(1997, Month.SEPTEMBER,5), "Şile", "Male");
+        Student student1 = new Student("Merve Anık", LocalDate.of(1997, Month.JANUARY, 15), "Şile", "Female");
+        Student student2 = new Student("Cem Gürsel", LocalDate.of(1997, Month.FEBRUARY, 11), "Şile", "Male");
+        Student student3 = new Student("Anıl Güzel", LocalDate.of(1997, Month.SEPTEMBER, 5), "Şile", "Male");
 
         student1 = studentRepository.save(student1);
         student2 = studentRepository.save(student2);
